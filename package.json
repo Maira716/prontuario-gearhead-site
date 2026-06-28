@@ -1,0 +1,14 @@
+{
+  "name": "prontuario-gearhead-site",
+  "version": "1.0.0",
+  "description": "Landing page premium para o aplicativo Prontuário Gearhead",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}
