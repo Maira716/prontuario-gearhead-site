@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prontuário Gearhead | O App Definitivo de Garagem Virtual e Performance</title>
+  <meta name="description" content="Gerencie sua garagem, planeje upgrades de Stage 1, 2 e 3 com dinamômetro virtual, controle manutenções, estoque de peças e o consumo do seu carro em um só lugar.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            carbon: {
+              900: '#09090b',
+              800: '#121216',
+              700: '#18181b',
+              600: '#27272a',
+              text: '#a1a1aa'
+            },
+            accent: {
+              red: '#ef4444',
+              orange: '#f97316',
+              green: '#22c55e'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Google Fonts & Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-carbon-900 text-zinc-100 font-sans selection:bg-accent-red selection:text-white">
+
+  <!-- Glows de fundo para design premium -->
+  <div class="absolute top-0 left-0 w-full h-[800px] radial-glow-red pointer-events-none z-0"></div>
+  <div class="absolute top-[1200px] right-0 w-full h-[600px] radial-glow-orange pointer-events-none z-0"></div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-carbon-900/80 backdrop-blur-md border-b border-white/5 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-red to-accent-orange flex items-center justify-center shadow-lg shadow-accent-red/20 group-hover:rotate-45 transition-transform duration-500">
+          <!-- Icone de Engrenagem + Raio -->
+          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-lg font-black tracking-wider text-white font-mono-perf leading-none">PRONTUÁRIO</span>
+          <span class="text-xs font-semibold tracking-widest text-accent-orange leading-none mt-1">GEARHEAD</span>
+        </div>
+      </a>
+
+      <!-- Menu links desktop -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#recursos" class="text-sm font-medium text-zinc-300 hover:text-accent-red transition-colors">Recursos</a>
+        <a href="#simuladores" class="text-sm font-medium text-zinc-300 hover:text-accent-red transition-colors">Simulador Virtual</a>
+        <a href="#dashboard" class="text-sm font-medium text-zinc-300 hover:text-accent-red transition-colors">Dashboard</a>
+        <a href="#comparador-temas" class="text-sm font-medium text-zinc-300 hover:text-accent-red transition-colors">Modos</a>
+      </nav>
+
+      <!-- Botão Header -->
+      <div class="flex items-center gap-4">
+        <a href="#download" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs sm:text-sm font-medium text-white rounded-lg group bg-gradient-to-br from-accent-red to-accent-orange group-hover:from-accent-red group-hover:to-accent-orange hover:text-white focus:ring-4 focus:outline-none focus:ring-red-800 transition-all">
+          <span class="relative px-5 py-2 transition-all ease-in duration-75 bg-carbon-900 rounded-md group-hover:bg-opacity-0">
+            Baixar Grátis
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Copywriting -->
+        <div class="lg:col-span-7 flex flex-col justify-center text-center lg:text-left">
+          <!-- Tag chamativa -->
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-800/80 border border-zinc-700 w-fit mx-auto lg:mx-0 mb-6">
+            <span class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-red"></span>
+            </span>
+            <span class="text-xs font-semibold text-zinc-300 tracking-wide uppercase">V1.4.0 Disponível na Google Play</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+            O prontuário definitivo para o seu <span class="bg-gradient-to-r from-accent-red to-accent-orange bg-clip-text text-transparent">projeto gearhead.</span>
+          </h1>
+          
+          <p class="text-base sm:text-lg md:text-xl text-carbon-text font-normal mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            Gerencie sua garagem, planeje upgrades de Stage 1, 2 e 3 com dinamômetro virtual, controle manutenções, estoque de peças e o consumo do seu carro em um só lugar.
+          </p>
+
+          <!-- Botões CTA -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+            <a href="#download" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-accent-red to-accent-orange text-white font-bold rounded-lg shadow-lg shadow-accent-red/20 hover:shadow-accent-red/40 hover:-translate-y-0.5 transition-all text-center flex items-center justify-center gap-3">
+              <!-- Ícone da Google Play -->
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 5.25V18.75L18.15 12L3 5.25Z" />
+              </svg>
+              Baixar no Google Play
+            </a>
+            <a href="#simuladores" class="w-full sm:w-auto px-8 py-4 bg-carbon-800 border border-zinc-700 hover:border-zinc-500 text-white font-semibold rounded-lg hover:-translate-y-0.5 transition-all text-center flex items-center justify-center gap-2">
+              Conhecer Recursos
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 13l-7 7-7-7m14-6l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Chamada para Track Day / Entusiastas -->
+          <div class="flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-3 text-xs font-semibold text-zinc-400 font-mono-perf">
+            <span class="flex items-center gap-2">✓ PROJETADO PARA PILOTOS DE TRACK DAY</span>
+            <span class="flex items-center gap-2">✓ CÁLCULOS FÍSICOS REAIS</span>
+            <span class="flex items-center gap-2">✓ HISTÓRICO EXPORTÁVEL</span>
+          </div>
+        </div>
+
+        <!-- Phone Mockup Animado -->
+        <div class="lg:col-span-5 flex justify-center relative">
+          <!-- Brilho no fundo do celular -->
+          <div class="absolute -inset-4 bg-gradient-to-tr from-accent-red/20 to-accent-orange/10 rounded-3xl blur-2xl opacity-70 animate-pulse-slow"></div>
+          
+          <!-- Smartphone Outer -->
+          <div class="relative w-[300px] h-[600px] bg-zinc-900 rounded-[48px] p-3 shadow-2xl border-4 border-zinc-800 flex flex-col overflow-hidden animate-float">
+            <!-- Notch / Alto falante do celular -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-zinc-800 rounded-b-2xl z-30 flex items-center justify-center">
+              <div class="w-12 h-1 bg-zinc-950 rounded-full mb-1"></div>
+            </div>
+            
+            <!-- Screen (App Prontuário Gearhead) -->
+            <div class="w-full h-full bg-carbon-900 rounded-[38px] overflow-hidden flex flex-col p-4 pt-8 relative text-xs">
+              
+              <!-- App Bar -->
+              <div class="flex items-center justify-between mb-4 border-b border-zinc-800 pb-2">
+                <div class="flex items-center gap-2">
+                  <div class="w-5 h-5 rounded bg-accent-red flex items-center justify-center font-bold text-[9px] text-white">PH</div>
+                  <div>
+                    <h3 class="font-bold text-white leading-none">VW Jetta GLI</h3>
+                    <span class="text-[8px] text-zinc-400 leading-none">Projeto Stage 2</span>
+                  </div>
+                </div>
+                <div class="text-[9px] text-zinc-400 font-mono-perf">230 WHP Est.</div>
+              </div>
+
+              <!-- RPM Shift Lights (Racing indicator) -->
+              <div class="grid grid-cols-8 gap-1 px-2 py-1 bg-zinc-950 rounded-full mb-4">
+                <div class="h-2 rounded bg-emerald-500"></div>
+                <div class="h-2 rounded bg-emerald-500"></div>
+                <div class="h-2 rounded bg-emerald-500"></div>
+                <div class="h-2 rounded bg-yellow-500"></div>
+                <div class="h-2 rounded bg-yellow-500"></div>
+                <div class="h-2 rounded bg-accent-orange"></div>
+                <div class="h-2 rounded bg-accent-red redline-flash"></div>
+                <div class="h-2 rounded bg-accent-red redline-flash"></div>
+              </div>
+
+              <!-- Dyno Card Mockup -->
+              <div class="bg-zinc-850 border border-zinc-800 rounded-xl p-3 mb-3">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-[9px] uppercase tracking-wider font-bold text-accent-orange font-mono-perf">Dinamômetro Virtual</span>
+                  <span class="bg-red-500/10 text-red-500 border border-red-500/20 text-[7px] font-bold px-1.5 py-0.5 rounded">RWD</span>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 mb-2">
+                  <div class="bg-zinc-900/50 p-2 rounded border border-white/5">
+                    <span class="text-[8px] text-zinc-400 block">Motor (Est.)</span>
+                    <span class="text-sm font-bold text-white font-mono-perf">285 <span class="text-[9px] font-sans font-normal text-zinc-400">HP</span></span>
+                  </div>
+                  <div class="bg-zinc-900/50 p-2 rounded border border-white/5">
+                    <span class="text-[8px] text-zinc-400 block">Roda (WHP)</span>
+                    <span class="text-sm font-bold text-accent-red font-mono-perf">242 <span class="text-[9px] font-sans font-normal text-zinc-400">HP</span></span>
+                  </div>
+                </div>
+
+                <!-- Dyno Curves SVG -->
+                <div class="h-20 bg-zinc-950 rounded border border-zinc-800 flex items-center justify-center p-1 overflow-hidden">
+                  <svg class="w-full h-full" viewBox="0 0 100 50">
+                    <!-- Grid Lines -->
+                    <line x1="0" y1="10" x2="100" y2="10" stroke="#222" stroke-width="0.5" />
+                    <line x1="0" y1="25" x2="100" y2="25" stroke="#222" stroke-width="0.5" />
+                    <line x1="0" y1="40" x2="100" y2="40" stroke="#222" stroke-width="0.5" />
+                    <!-- Curve Power -->
+                    <path d="M 5,45 Q 30,30 65,15 T 95,20" fill="none" stroke="#ef4444" stroke-width="1.5" />
+                    <!-- Curve Torque -->
+                    <path d="M 5,40 Q 25,10 55,20 T 95,35" fill="none" stroke="#f97316" stroke-width="1.5" />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- List of active mods -->
+              <div class="flex flex-col gap-1.5">
+                <span class="text-[8px] uppercase tracking-wider text-zinc-400 font-bold">Modificações Aplicadas</span>
+                <div class="flex items-center justify-between p-1.5 bg-zinc-950 rounded border border-white/5 text-[9px]">
+                  <span class="text-zinc-300">Intake R-Line</span>
+                  <span class="text-accent-green font-mono-perf">+12 HP</span>
+                </div>
+                <div class="flex items-center justify-between p-1.5 bg-zinc-950 rounded border border-white/5 text-[9px]">
+                  <span class="text-zinc-300">Downpipe Inox 3"</span>
+                  <span class="text-accent-green font-mono-perf">+18 HP</span>
+                </div>
+                <div class="flex items-center justify-between p-1.5 bg-zinc-950 rounded border border-white/5 text-[9px]">
+                  <span class="text-zinc-300">Remap Stage 2 E30</span>
+                  <span class="text-accent-green font-mono-perf">+35 HP</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCK / NUMBERS FAIXA -->
+  <section class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6">
+    <div class="glass-card glow-border-red rounded-2xl p-6 sm:p-8 bg-zinc-900/90 shadow-2xl">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-zinc-800">
+        
+        <!-- Stat 1 -->
+        <div class="flex flex-col justify-center pt-4 md:pt-0">
+          <span class="text-2xl sm:text-3xl font-black text-white font-mono-perf">100% FÍSICO</span>
+          <span class="text-xs uppercase tracking-wider text-zinc-400 mt-2 font-bold">0-100 km/h Estimado</span>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="flex flex-col justify-center pt-4 md:pt-0">
+          <span class="text-2xl sm:text-3xl font-black text-accent-red font-mono-perf">WHP EST.</span>
+          <span class="text-xs uppercase tracking-wider text-zinc-400 mt-2 font-bold">Potência na Roda</span>
+        </div>
+
+        <!-- Stat 3 -->
+        <div class="flex flex-col justify-center pt-4 md:pt-0">
+          <span class="text-2xl sm:text-3xl font-black text-white font-mono-perf">MANUTENÇÕES</span>
+          <span class="text-xs uppercase tracking-wider text-zinc-400 mt-2 font-bold">Histórico Geral em PDF</span>
+        </div>
+
+        <!-- Stat 4 -->
+        <div class="flex flex-col justify-center pt-4 md:pt-0">
+          <span class="text-2xl sm:text-3xl font-black text-accent-orange font-mono-perf">STAGES 1, 2, 3</span>
+          <span class="text-xs uppercase tracking-wider text-zinc-400 mt-2 font-bold">Planejamento e Upgrades</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID INTERATIVO DE RECURSOS -->
+  <section id="recursos" class="py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+          Tudo o que seu projeto precisa, em uma única garagem.
+        </h2>
+        <p class="text-zinc-400">
+          Chega de planilhas bagunçadas. O Prontuário Gearhead centraliza os dados técnicos e financeiros do seu carro com ferramentas inteligentes de simulação física.
+        </p>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Recurso 1: Dinamômetro Virtual -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between h-full hover:border-accent-red/30">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-accent-red/10 border border-accent-red/20 flex items-center justify-center text-accent-red mb-6">
+              <!-- Dyno Icon -->
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Dinamômetro Virtual & Stages</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+              Simule os ganhos de potência e torque do motor com base nas modificações instaladas (remap, escape, intake). Calcula a potência na roda (WHP) descontando perdas reais por tipo de tração: FWD (12%), RWD (15%) e AWD (20%).
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-accent-red font-mono-perf uppercase flex items-center gap-1.5">
+            CÁLCULO ATIVO POR TIPO DE TRAÇÃO
+          </span>
+        </div>
+
+        <!-- Recurso 2: Simulador Físico de Performance -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between h-full hover:border-accent-red/30">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-accent-orange/10 border border-accent-orange/20 flex items-center justify-center text-accent-orange mb-6">
+              <!-- Speedometer Icon -->
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Simulador Físico 0-100 km/h</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+              Estime o tempo de aceleração de 0 a 100 km/h do carro e a velocidade máxima teórica com base na relação peso/potência e no tipo de tração. Entenda o impacto de aliviar peso no veículo!
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-accent-orange font-mono-perf uppercase flex items-center gap-1.5">
+            ESTIMA ACELERAÇÃO MÁXIMA
+          </span>
+        </div>
+
+        <!-- Recurso 3: Histórico de Manutenções & Lembretes -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between h-full hover:border-accent-red/30">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-accent-red/10 border border-accent-red/20 flex items-center justify-center text-accent-red mb-6">
+              <!-- Maintenance Spanner Icon -->
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Histórico e Alertas em PDF</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+              Registre trocas de óleo, filtros, velas e revisões anexando notas fiscais. Crie alertas inteligentes por data ou quilometragem limite e exporte o histórico completo em um PDF profissional para valorizar seu carro na venda.
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-accent-red font-mono-perf uppercase flex items-center gap-1.5">
+            EXPORTAÇÃO EM PDF COMPLETO
+          </span>
+        </div>
+
+        <!-- Recurso 4: Almoxarifado (Estoque de Peças) -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between h-full hover:border-accent-red/30">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-accent-orange/10 border border-accent-orange/20 flex items-center justify-center text-accent-orange mb-6">
+              <!-- Warehouse Box Icon -->
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Almoxarifado & Peças</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+              Gerencie peças de reposição e fluidos guardados para cada carro. Acompanhe a condição (nova/usada), valores investidos e organize sua própria prateleira de performance na garagem.
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-accent-orange font-mono-perf uppercase flex items-center gap-1.5">
+            CONTROLE DE ESTOQUE PRIVADO
+          </span>
+        </div>
+
+        <!-- Recurso 5: Calculadora de Consumo & Flex -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between h-full hover:border-accent-red/30">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-accent-red/10 border border-accent-red/20 flex items-center justify-center text-accent-red mb-6">
+              <!-- Fuel Icon -->
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Calculadora de Consumo & Flex</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+              Registre abastecimentos e calcule médias de consumo e custos por quilômetro rodado. Use a calculadora dinâmica Álcool vs. Gasolina no dia a dia para economizar em cada posto.
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-accent-red font-mono-perf uppercase flex items-center gap-1.5">
+            ALGORITMO FLEX INTELIGENTE
+          </span>
+        </div>
+
+        <!-- Recurso 6: Diário de Bordo & Track Days -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between h-full hover:border-accent-red/30">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-accent-orange/10 border border-accent-orange/20 flex items-center justify-center text-accent-orange mb-6">
+              <!-- Notebook / Star Icon -->
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Diário de Bordo & Avaliações</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+              Registre suas experiências de direção, tempos de volta em track days, viagens e avalie peças instaladas (pneus, pastilhas, suspensão) com fotos e notas de satisfação.
+            </p>
+          </div>
+          <span class="text-xs font-semibold text-accent-orange font-mono-perf uppercase flex items-center gap-1.5">
+            LOG DE PROVA E AVALIAÇÃO DE COMPONENTES
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO DE SIMULADORES ATIVOS (O CORAÇÃO INTERATIVO) -->
+  <section id="simuladores" class="py-24 bg-carbon-800 relative z-10 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold text-accent-red tracking-widest uppercase font-mono-perf">SIMULAÇÕES FÍSICAS REAIS</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">
+          Simule Upgrades e Performance Instantaneamente
+        </h2>
+        <p class="text-zinc-400">
+          Ajuste os parâmetros abaixo e veja as curvas de potência, torque, perda mecânica de tração e o tempo de 0-100 km/h mudarem na hora no painel virtual.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        
+        <!-- Painel de Controles (Esquerda) -->
+        <div class="bg-carbon-900 border border-zinc-800 rounded-2xl p-6 sm:p-8 space-y-8">
+          <div>
+            <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-accent-red"></span> Parâmetros do Veículo
+            </h3>
+            
+            <div class="space-y-6">
+              <!-- Tração -->
+              <div>
+                <label for="dyno-traction" class="block text-sm font-semibold text-zinc-300 mb-2">Tipo de Tração (Perda Física)</label>
+                <select id="dyno-traction" class="w-full p-3 bg-zinc-950 border border-zinc-800 rounded-lg text-white font-semibold focus:border-accent-red focus:outline-none">
+                  <option value="FWD">FWD (Tração Dianteira - 12% Perda)</option>
+                  <option value="RWD">RWD (Tração Traseira - 15% Perda)</option>
+                  <option value="AWD">AWD (Tração Integral - 20% Perda)</option>
+                </select>
+              </div>
+
+              <!-- HP de Fábrica (Slider) -->
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <label for="dyno-stock-hp" class="text-sm font-semibold text-zinc-300">Potência Original (Motor)</label>
+                  <span id="dyno-stock-hp-val" class="text-sm font-bold text-accent-orange font-mono-perf">230 HP</span>
+                </div>
+                <input id="dyno-stock-hp" type="range" min="100" max="500" value="230" class="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-accent-red">
+                <div class="flex justify-between text-[10px] text-zinc-500 font-mono-perf mt-1">
+                  <span>100 HP</span>
+                  <span>500 HP</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modificações (Upgrades) -->
+          <div>
+            <h3 class="text-sm font-bold text-zinc-400 uppercase tracking-wider mb-4">Selecione Upgrades Planejados</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              
+              <!-- Intake -->
+              <button id="up-intake" class="flex flex-col items-center justify-center p-4 bg-zinc-950 border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all">
+                <span class="w-3 h-3 rounded-full bg-zinc-800 mb-2 upgrade-ind transition-colors"></span>
+                <span class="text-xs font-bold text-zinc-300">Filtro / Intake</span>
+                <span class="text-[9px] text-accent-green font-mono-perf mt-1">+5% HP</span>
+              </button>
+
+              <!-- Escape/Downpipe -->
+              <button id="up-downpipe" class="flex flex-col items-center justify-center p-4 bg-zinc-950 border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all">
+                <span class="w-3 h-3 rounded-full bg-zinc-800 mb-2 upgrade-ind transition-colors"></span>
+                <span class="text-xs font-bold text-zinc-300">Escape / DP</span>
+                <span class="text-[9px] text-accent-green font-mono-perf mt-1">+8% HP</span>
+              </button>
+
+              <!-- Remap -->
+              <button id="up-remap" class="flex flex-col items-center justify-center p-4 bg-zinc-950 border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all">
+                <span class="w-3 h-3 rounded-full bg-zinc-800 mb-2 upgrade-ind transition-colors"></span>
+                <span class="text-xs font-bold text-zinc-300">Remap Stage 2</span>
+                <span class="text-[9px] text-accent-green font-mono-perf mt-1">+15% HP</span>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Simulador Físico 0-100 -->
+          <div class="border-t border-zinc-800 pt-6">
+            <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-accent-orange"></span> Arrancada & Dinâmica (0-100)
+            </h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Peso do Veículo -->
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <label for="perf-weight" class="text-xs font-semibold text-zinc-300">Peso do Carro (kg)</label>
+                  <span id="perf-weight-val" class="text-xs font-bold text-white font-mono-perf">1400 kg</span>
+                </div>
+                <input id="perf-weight" type="range" min="800" max="2200" value="1400" step="50" class="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-accent-orange">
+                <div class="flex justify-between text-[8px] text-zinc-500 font-mono-perf mt-1">
+                  <span>800 kg</span>
+                  <span>2200 kg</span>
+                </div>
+              </div>
+
+              <!-- Tração Sim -->
+              <div>
+                <label for="perf-traction" class="block text-xs font-semibold text-zinc-300 mb-2">Tração (Pneus/Arrancada)</label>
+                <select id="perf-traction" class="w-full p-2.5 bg-zinc-950 border border-zinc-800 rounded-lg text-white text-xs font-semibold focus:border-accent-orange focus:outline-none">
+                  <option value="AWD">AWD - Sem perda off-the-line</option>
+                  <option value="RWD">RWD - Boa tração inicial</option>
+                  <option value="FWD" selected>FWD - Destracionamento inicial</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="hidden">
+              <!-- Hidden outputs used by the code logic helper -->
+              <input id="perf-power" type="hidden" value="230">
+              <span id="perf-power-val">230 HP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Painel de Resultados Instrumentados (Direita) -->
+        <div class="space-y-6">
+          
+          <!-- Card de Dinamômetro Ativo -->
+          <div class="bg-carbon-900 border border-zinc-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-24 h-24 bg-accent-red/5 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <h4 class="text-xs font-extrabold text-accent-red tracking-wider uppercase mb-6 font-mono-perf">DINAMÔMETRO INSTRUMENTADO</h4>
+            
+            <!-- Grid de Potências -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              
+              <!-- Potência Motor -->
+              <div class="bg-zinc-950 p-4 rounded-xl border border-white/5">
+                <span class="text-zinc-500 text-xs block mb-1">Motor (Est.)</span>
+                <div class="text-2xl font-black text-white font-mono-perf">
+                  <span id="dyno-out-engine-hp">230</span> <span class="text-xs font-normal text-zinc-500">HP</span>
+                </div>
+              </div>
+
+              <!-- Potência Roda (WHP) -->
+              <div class="bg-zinc-950 p-4 rounded-xl border border-white/5 relative">
+                <div class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-accent-red redline-flash"></div>
+                <span class="text-zinc-500 text-xs block mb-1">Roda (WHP)</span>
+                <div class="text-2xl font-black text-accent-red font-mono-perf">
+                  <span id="dyno-out-whp">202</span> <span class="text-xs font-normal text-red-500/50">HP</span>
+                </div>
+              </div>
+
+              <!-- Torque Estimado -->
+              <div class="bg-zinc-950 p-4 rounded-xl border border-white/5">
+                <span class="text-zinc-500 text-xs block mb-1">Torque</span>
+                <div class="text-2xl font-black text-white font-mono-perf">
+                  <span id="dyno-out-torque">310</span> <span class="text-xs font-normal text-zinc-500">Nm</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Gráfico de Curva Dinâmica -->
+            <div class="mb-4">
+              <span class="text-[10px] text-zinc-500 block mb-2 font-mono-perf">CURVAS DE POTÊNCIA (VERMELHA) E TORQUE (LARANJA)</span>
+              <div class="w-full h-40 bg-zinc-950 rounded-xl border border-zinc-800 flex items-center justify-center p-2 relative overflow-hidden chart-container">
+                
+                <!-- RPM labels -->
+                <div class="absolute bottom-1 left-0 w-full flex justify-between px-10 text-[8px] text-zinc-600 font-mono-perf">
+                  <span>1K</span>
+                  <span>2K</span>
+                  <span>3K</span>
+                  <span>4K</span>
+                  <span>5K</span>
+                  <span>6K</span>
+                  <span>7K RPM</span>
+                </div>
+                
+                <!-- Dynamic SVG curves -->
+                <svg class="w-full h-full pb-4" viewBox="0 0 450 250">
+                  <path id="dyno-path-power" class="dyno-line-power" d="M 50,240" fill="none" stroke="#ef4444" stroke-width="3" />
+                  <path id="dyno-path-torque" class="dyno-line-torque" d="M 50,240" fill="none" stroke="#f97316" stroke-width="3" />
+                </svg>
+              </div>
+            </div>
+            
+            <div id="dyno-out-loss" class="text-center text-xs text-zinc-500 font-mono-perf">
+              -12% (28 HP perdidos em transmissão)
+            </div>
+          </div>
+
+          <!-- Card de Cronometragem 0-100 -->
+          <div class="bg-carbon-900 border border-zinc-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+            <h4 class="text-xs font-extrabold text-accent-orange tracking-wider uppercase mb-6 font-mono-perf">CRONOMETRAGEM VIRTUAL</h4>
+            
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              
+              <!-- Peso/Potencia -->
+              <div class="bg-zinc-950 p-4 rounded-xl border border-white/5">
+                <span class="text-zinc-500 text-xs block mb-1">Relação Peso/Potência</span>
+                <div id="perf-out-ratio" class="text-xl font-bold text-white font-mono-perf">6.08 kg/HP</div>
+              </div>
+
+              <!-- 0-100 km/h -->
+              <div class="bg-zinc-950 p-4 rounded-xl border border-white/5">
+                <span class="text-zinc-500 text-xs block mb-1">Aceleração (0-100)</span>
+                <div id="perf-out-time" class="text-2xl font-black text-accent-orange font-mono-perf transition-all duration-300">6.20s</div>
+              </div>
+
+              <!-- V-Max Teórica -->
+              <div class="bg-zinc-950 p-4 rounded-xl border border-white/5">
+                <span class="text-zinc-500 text-xs block mb-1">Velocidade Máxima Est.</span>
+                <div id="perf-out-speed" class="text-xl font-bold text-white font-mono-perf">232 km/h</div>
+              </div>
+
+            </div>
+
+            <!-- Simulação visual de corrida -->
+            <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-4 flex flex-col gap-3 relative overflow-hidden">
+              <span class="text-[8px] uppercase tracking-wider text-zinc-500 font-mono-perf">Simulação de Lançamento (Pista 402m)</span>
+              
+              <!-- Track lane -->
+              <div class="h-10 bg-zinc-900 rounded-lg relative flex items-center border border-white/5">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-8 border-r-2 border-dashed border-zinc-700"></div>
+                <!-- Dotted center line -->
+                <div class="w-full border-t border-dashed border-zinc-850"></div>
+                
+                <!-- Progress bar track -->
+                <div id="sim-progress-bar" class="absolute left-0 top-0 bottom-0 bg-accent-orange/15 w-0 rounded-l-lg transition-all duration-75"></div>
+                
+                <!-- Car icon -->
+                <div id="sim-car-icon" class="absolute left-0 text-xl transition-all duration-75">
+                  🏎️
+                </div>
+              </div>
+              
+              <button id="btn-run-sim" class="w-full py-3 bg-gradient-to-r from-accent-orange to-accent-red hover:from-accent-orange hover:to-accent-red text-white font-bold rounded-lg shadow-lg hover:shadow-accent-orange/20 transition-all font-mono-perf text-sm uppercase tracking-wider">
+                Iniciar Arrancada ⏱️
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Calculadora Flex Rápida integrada -->
+      <div class="mt-12 glass-card rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto border border-zinc-800">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h4 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+              ⛽ Calculadora Flex Dinâmica (Álcool vs. Gasolina)
+            </h4>
+            <p class="text-zinc-400 text-sm">
+              Descubra qual combustível compensa mais financeiramente hoje. O aplicativo calcula a eficiência real considerando o rendimento médio energético (70%).
+            </p>
+            
+            <div class="grid grid-cols-2 gap-4 mt-6">
+              <div>
+                <label for="flex-gas" class="block text-xs font-semibold text-zinc-300 mb-2">Preço da Gasolina (R$)</label>
+                <input id="flex-gas" type="number" step="0.01" value="5.89" class="w-full p-3 input-custom text-center font-bold text-sm">
+              </div>
+              <div>
+                <label for="flex-alc" class="block text-xs font-semibold text-zinc-300 mb-2">Preço do Álcool (R$)</label>
+                <input id="flex-alc" type="number" step="0.01" value="3.85" class="w-full p-3 input-custom text-center font-bold text-sm">
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex flex-col justify-center">
+            <div id="flex-result-card" class="p-6 rounded-xl bg-zinc-900 border border-zinc-800 text-center transition-all duration-300">
+              <span class="text-zinc-500 text-xs block mb-1">Recomendação Gearhead</span>
+              <div id="flex-result-text" class="text-2xl font-black text-white font-sans">
+                Insira os valores
+              </div>
+              <p id="flex-result-detail" class="text-xs text-zinc-400 mt-2 leading-relaxed">
+                Preencha os preços nos campos ao lado para calcular.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEÇÃO DE INSIGHTS / FINANCEIRO -->
+  <section id="dashboard" class="py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Copywriting -->
+        <div class="lg:col-span-6">
+          <span class="text-xs font-bold text-accent-red tracking-widest uppercase font-mono-perf">PAINEL DE PROJETO</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-6">
+            Todo o custo e evolução financeira sob controle
+          </h2>
+          <p class="text-zinc-400 mb-6 leading-relaxed">
+            Investir em upgrades e manutenções faz parte da vida de um gearhead, mas perder a conta de quanto gastou não. O **Prontuário Gearhead** entrega relatórios gráficos completos.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent-red mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <h4 class="font-bold text-white text-sm">Distribuição de Gastos Inteligente</h4>
+                <p class="text-zinc-400 text-xs mt-0.5">Visualize a divisão percentual exata entre Upgrades, Peças, Manutenções e Combustível.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-accent-orange mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <h4 class="font-bold text-white text-sm">Odômetro Geral Unificado</h4>
+                <p class="text-zinc-400 text-xs mt-0.5">Saiba exatamente quantos quilômetros você rodou com cada veículo cadastrado e o consumo acumulado da frota.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Dashboard Mockup (Direita) -->
+        <div id="insights-dashboard" class="lg:col-span-6 flex justify-center">
+          <div class="w-full max-w-lg glass-card glow-border-red rounded-2xl p-6 shadow-2xl relative overflow-hidden bg-zinc-900/90">
+            <div class="flex items-center justify-between border-b border-zinc-800 pb-4 mb-6">
+              <div>
+                <h3 class="font-bold text-white text-sm">Dashboard Financeiro</h3>
+                <span class="text-zinc-500 text-[10px]">Visão geral da garagem</span>
+              </div>
+              <span class="px-2.5 py-1 bg-accent-red/10 text-accent-red rounded text-[10px] font-bold font-mono-perf">ANO ATUAL</span>
+            </div>
+
+            <!-- Stats rápidos -->
+            <div class="grid grid-cols-3 gap-3 mb-6">
+              <div class="bg-zinc-950 p-3 rounded-lg border border-white/5">
+                <span class="text-zinc-500 text-[9px] block">Km Total Rodado</span>
+                <span class="text-sm font-black text-white font-mono-perf">24.850 <span class="text-[9px] font-sans font-normal text-zinc-500">km</span></span>
+              </div>
+              <div class="bg-zinc-950 p-3 rounded-lg border border-white/5">
+                <span class="text-zinc-500 text-[9px] block">Média de Consumo</span>
+                <span class="text-sm font-black text-white font-mono-perf">11,2 <span class="text-[9px] font-sans font-normal text-zinc-500">km/L</span></span>
+              </div>
+              <div class="bg-zinc-950 p-3 rounded-lg border border-white/5">
+                <span class="text-zinc-500 text-[9px] block">Investimento Total</span>
+                <span class="text-sm font-black text-accent-red font-mono-perf">R$ 14,2K</span>
+              </div>
+            </div>
+
+            <!-- Gráfico de Gastos Simulado -->
+            <div class="space-y-4">
+              <span class="text-[10px] text-zinc-400 uppercase font-bold tracking-wider font-mono-perf block">Distribuição de Custos</span>
+              
+              <!-- Custo 1: Upgrades -->
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-zinc-300 font-semibold">Upgrades de Performance</span>
+                  <span class="text-white font-mono-perf">R$ 8.540 (60%)</span>
+                </div>
+                <div class="w-full bg-zinc-950 rounded-full h-2 overflow-hidden border border-white/5">
+                  <div class="bg-accent-red h-full rounded-full dash-bar transition-all duration-1000 ease-out" style="width: 0%;" data-target-height="60"></div>
+                </div>
+              </div>
+
+              <!-- Custo 2: Manutenções -->
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-zinc-300 font-semibold">Manutenções Corretivas/Preventivas</span>
+                  <span class="text-white font-mono-perf">R$ 3.560 (25%)</span>
+                </div>
+                <div class="w-full bg-zinc-950 rounded-full h-2 overflow-hidden border border-white/5">
+                  <div class="bg-accent-orange h-full rounded-full dash-bar transition-all duration-1000 ease-out" style="width: 0%;" data-target-height="25"></div>
+                </div>
+              </div>
+
+              <!-- Custo 3: Abastecimentos -->
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-zinc-300 font-semibold">Combustível & Abastecimentos</span>
+                  <span class="text-white font-mono-perf">R$ 2.130 (15%)</span>
+                </div>
+                <div class="w-full bg-zinc-950 rounded-full h-2 overflow-hidden border border-white/5">
+                  <div class="bg-zinc-600 h-full rounded-full dash-bar transition-all duration-1000 ease-out" style="width: 0%;" data-target-height="15"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recentes Históricos logs -->
+            <div class="mt-6 border-t border-zinc-800 pt-6">
+              <span class="text-[10px] text-zinc-400 uppercase font-bold tracking-wider font-mono-perf block mb-3">Logs Recentes</span>
+              <div class="space-y-2 text-xs">
+                <div class="flex justify-between items-center p-2 bg-zinc-950 rounded border border-white/5">
+                  <span class="text-zinc-300">🔧 Troca de Velas e Bobinas Iridium</span>
+                  <span class="text-accent-red font-mono-perf font-semibold">R$ 1.200</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-zinc-950 rounded border border-white/5">
+                  <span class="text-zinc-300">📦 Filtro Esportivo Intake R</span>
+                  <span class="text-accent-red font-mono-perf font-semibold">R$ 680</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARADOR CLARO/ESCURO SLIDER -->
+  <section id="comparador-temas" class="py-24 bg-carbon-800 relative z-10 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold text-accent-red tracking-widest uppercase font-mono-perf">ADAPTABILIDADE VISUAL</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">
+          Visual adaptado para o dia a dia e para a oficina
+        </h2>
+        <p class="text-zinc-400">
+          Alterne perfeitamente entre o tema escuro de alta performance (Carbono) e o tema claro premium de alta legibilidade sob a luz do sol. Arraste a barra para comparar.
+        </p>
+      </div>
+
+      <!-- Compare Container -->
+      <div class="max-w-4xl mx-auto">
+        <div id="theme-slider-container" class="slider-container shadow-2xl relative select-none">
+          
+          <!-- Slide 1 (Underneath / Light Theme Mockup) -->
+          <div class="slider-img slider-img-light bg-zinc-100 flex items-center justify-center p-6 text-zinc-900">
+            <!-- Simulated Light Mode Phone -->
+            <div class="w-[300px] h-[500px] bg-white rounded-[32px] p-2.5 shadow-2xl border border-zinc-200 flex flex-col overflow-hidden text-xs">
+              <div class="w-full h-full bg-zinc-50 rounded-[24px] overflow-hidden flex flex-col p-4 pt-6 relative">
+                
+                <!-- Status bar -->
+                <div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-200">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-4 h-4 rounded bg-zinc-900 text-white flex items-center justify-center font-bold text-[8px]">PH</div>
+                    <span class="font-bold text-zinc-900 leading-none">VW Jetta GLI</span>
+                  </div>
+                  <span class="text-[9px] text-zinc-500 font-mono-perf font-semibold">LIGHT PREMIUM</span>
+                </div>
+
+                <!-- Dyno Card Light -->
+                <div class="bg-white border border-zinc-200 rounded-xl p-3 mb-3 shadow-sm">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-[8px] uppercase tracking-wider font-bold text-zinc-500">Dinamômetro</span>
+                    <span class="bg-zinc-100 text-zinc-800 text-[7px] font-bold px-1.5 py-0.5 rounded">RWD</span>
+                  </div>
+                  
+                  <div class="grid grid-cols-2 gap-2 mb-2">
+                    <div class="bg-zinc-50 p-2 rounded border border-zinc-100">
+                      <span class="text-[8px] text-zinc-400 block">Motor (Est.)</span>
+                      <span class="text-sm font-black text-zinc-800 font-mono-perf">285 <span class="text-[9px] font-sans font-normal text-zinc-400">HP</span></span>
+                    </div>
+                    <div class="bg-zinc-50 p-2 rounded border border-zinc-100">
+                      <span class="text-[8px] text-zinc-400 block">Roda (WHP)</span>
+                      <span class="text-sm font-black text-red-600 font-mono-perf">242 <span class="text-[9px] font-sans font-normal text-zinc-400">HP</span></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Light mode history list -->
+                <div class="flex flex-col gap-1.5">
+                  <span class="text-[8px] uppercase tracking-wider text-zinc-500 font-bold">Histórico de Peças</span>
+                  <div class="flex items-center justify-between p-2 bg-white rounded border border-zinc-200 shadow-sm text-[9px]">
+                    <span class="text-zinc-800 font-semibold">Intake R-Line</span>
+                    <span class="text-emerald-600 font-bold font-mono-perf">Instalado</span>
+                  </div>
+                  <div class="flex items-center justify-between p-2 bg-white rounded border border-zinc-200 shadow-sm text-[9px]">
+                    <span class="text-zinc-800 font-semibold">Downpipe Inox 3"</span>
+                    <span class="text-zinc-500 font-bold font-mono-perf">Estoque</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 (Overlapping / Dark Theme Mockup) -->
+          <div id="theme-slider-dark" class="slider-img slider-img-dark bg-carbon-900 flex items-center justify-center p-6 text-white bg-carbon-texture">
+            <!-- Simulated Dark Mode Phone -->
+            <div class="w-[300px] h-[500px] bg-zinc-900 rounded-[32px] p-2.5 shadow-2xl border border-zinc-800 flex flex-col overflow-hidden text-xs">
+              <div class="w-full h-full bg-carbon-900 rounded-[24px] overflow-hidden flex flex-col p-4 pt-6 relative">
+                
+                <!-- Status bar -->
+                <div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-800">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-4 h-4 rounded bg-red-600 text-white flex items-center justify-center font-bold text-[8px]">PH</div>
+                    <span class="font-bold text-white leading-none">VW Jetta GLI</span>
+                  </div>
+                  <span class="text-[9px] text-zinc-400 font-mono-perf font-semibold">CARBON DARK</span>
+                </div>
+
+                <!-- Dyno Card Dark -->
+                <div class="bg-zinc-850 border border-zinc-800 rounded-xl p-3 mb-3">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-[8px] uppercase tracking-wider font-bold text-accent-orange">Dinamômetro</span>
+                    <span class="bg-red-500/10 text-red-500 border border-red-500/20 text-[7px] font-bold px-1.5 py-0.5 rounded">RWD</span>
+                  </div>
+                  
+                  <div class="grid grid-cols-2 gap-2 mb-2">
+                    <div class="bg-zinc-950 p-2 rounded border border-white/5">
+                      <span class="text-[8px] text-zinc-400 block">Motor (Est.)</span>
+                      <span class="text-sm font-black text-white font-mono-perf">285 <span class="text-[9px] font-sans font-normal text-zinc-400">HP</span></span>
+                    </div>
+                    <div class="bg-zinc-950 p-2 rounded border border-white/5">
+                      <span class="text-[8px] text-zinc-400 block">Roda (WHP)</span>
+                      <span class="text-sm font-black text-accent-red font-mono-perf">242 <span class="text-[9px] font-sans font-normal text-zinc-400">HP</span></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Dark mode list -->
+                <div class="flex flex-col gap-1.5">
+                  <span class="text-[8px] uppercase tracking-wider text-zinc-400 font-bold">Histórico de Peças</span>
+                  <div class="flex items-center justify-between p-2 bg-zinc-950 rounded border border-white/5 text-[9px]">
+                    <span class="text-zinc-300">Intake R-Line</span>
+                    <span class="text-accent-green font-bold font-mono-perf">Instalado</span>
+                  </div>
+                  <div class="flex items-center justify-between p-2 bg-zinc-950 rounded border border-white/5 text-[9px]">
+                    <span class="text-zinc-300">Downpipe Inox 3"</span>
+                    <span class="text-zinc-500 font-bold font-mono-perf">Estoque</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Handle -->
+          <div id="theme-slider-handle" class="slider-handle">
+            <div class="slider-button">
+              <!-- Left/Right arrows inside button -->
+              <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-4 3 4 3m8-6l4 3-4 3" />
+              </svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section id="download" class="py-28 relative z-10 overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      
+      <!-- Degradê circular nas bordas -->
+      <div class="absolute -inset-1 bg-gradient-to-r from-accent-red to-accent-orange rounded-3xl blur opacity-30"></div>
+      
+      <div class="relative bg-zinc-900 border border-zinc-800 rounded-3xl p-10 sm:p-16 text-center shadow-2xl">
+        <h2 class="text-3xl sm:text-5xl font-black text-white mb-6 tracking-tight">
+          Pronto para domar cada cavalo de potência?
+        </h2>
+        <p class="text-zinc-400 text-base sm:text-lg mb-10 max-w-2xl mx-auto">
+          Faça parte da comunidade de entusiastas de carros que cuidam e gerenciam seus projetos com precisão. Cadastre sua garagem hoje mesmo!
+        </p>
+
+        <!-- Google Play Button Wrapper -->
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <a href="#" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-accent-red to-accent-orange hover:shadow-accent-red/20 hover:shadow-xl text-white font-bold rounded-xl transition-all flex items-center justify-center gap-3">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 5.25V18.75L18.15 12L3 5.25Z" />
+            </svg>
+            Download na Google Play Store
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-carbon-900 border-t border-zinc-800 py-12 relative z-10 text-xs text-zinc-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        
+        <!-- Logo footer -->
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded bg-gradient-to-br from-accent-red to-accent-orange flex items-center justify-center font-bold text-xs text-white">PH</div>
+          <span class="font-bold text-white tracking-widest uppercase font-mono-perf">Prontuário Gearhead</span>
+        </div>
+
+        <!-- Links institucionais -->
+        <div class="flex flex-wrap justify-center gap-6">
+          <a href="#" class="hover:text-white transition-colors">Termos de Uso</a>
+          <a href="#" class="hover:text-white transition-colors">Políticas de Privacidade</a>
+          <a href="#" class="hover:text-white transition-colors">Suporte Técnico</a>
+        </div>
+
+        <div>
+          © 2026 Prontuário Gearhead. Desenvolvido para entusiastas por performance.
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Link do Script JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>

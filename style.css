@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-bg-dark: #09090b;
+  --color-bg-card: #121216;
+  --color-accent-red: #ef4444;
+  --color-accent-orange: #f97316;
+  --color-accent-green: #22c55e;
+  --color-gray-text: #a1a1aa;
+}
+
+body {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  background-color: var(--color-bg-dark);
+  color: #f4f4f5;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom Monospace Numbers */
+.font-mono-perf {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-red);
+}
+
+/* Matte Carbon Fiber Pattern */
+.bg-carbon-texture {
+  background-color: #09090b;
+  background-image: 
+    linear-gradient(45deg, #111115 25%, transparent 25%, transparent 75%, #111115 75%, #111115), 
+    linear-gradient(45deg, #111115 25%, #09090b 25%, #09090b 75%, #111115 75%, #111115);
+  background-size: 6px 6px;
+  background-position: 0 0, 3px 3px;
+}
+
+/* Radial Glow Effects */
+.radial-glow-red {
+  background: radial-gradient(circle 600px at 50% 200px, rgba(239, 68, 68, 0.12), transparent 80%);
+}
+
+.radial-glow-orange {
+  background: radial-gradient(circle 500px at 80% 400px, rgba(249, 115, 22, 0.08), transparent 80%);
+}
+
+/* Premium Card Glassmorphism */
+.glass-card {
+  background: rgba(18, 18, 22, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(239, 68, 68, 0.2);
+  box-shadow: 0 10px 30px -10px rgba(239, 68, 68, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Glow Borders */
+.glow-border-red {
+  position: relative;
+}
+.glow-border-red::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to right, rgba(239, 68, 68, 0.4), rgba(249, 115, 22, 0.1));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(0.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.6; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Shift light animation (RPM tracker) */
+@keyframes shift-flash {
+  0%, 100% { background-color: #ef4444; box-shadow: 0 0 4px #ef4444; }
+  50% { background-color: #b91c1c; box-shadow: 0 0 15px #ef4444; }
+}
+
+.redline-flash {
+  animation: shift-flash 0.3s infinite;
+}
+
+/* Dyno Graph line styling */
+.chart-container svg {
+  overflow: visible;
+}
+
+.dyno-line-power {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-graph 2s ease-out forwards;
+}
+
+.dyno-line-torque {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-graph 2s ease-out forwards 0.4s;
+}
+
+@keyframes draw-graph {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Split Slider (Light/Dark Comparison) */
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.slider-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.slider-img-light {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.slider-img-dark {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  /* clip-path will be updated dynamically via JS */
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+.slider-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--color-accent-red), var(--color-accent-orange));
+  z-index: 3;
+  cursor: ew-resize;
+  transform: translateX(-50%);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+}
+
+.slider-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: #18181b;
+  border: 2px solid var(--color-accent-red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: ew-resize;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+  transition: background-color 0.2s, transform 0.2s;
+  z-index: 4;
+}
+
+.slider-button:hover {
+  background: var(--color-accent-red);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Custom speed gauge */
+.gauge-outer {
+  stroke-dasharray: 220;
+  stroke-linecap: round;
+}
+
+/* Interactive elements styles */
+.input-custom {
+  background: rgba(24, 24, 27, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.input-custom:focus {
+  border-color: var(--color-accent-red);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+  outline: none;
+}
+
+/* Active upgrade indicator glow */
+.btn-upgrade-active {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(249, 115, 22, 0.2)) !important;
+  border-color: var(--color-accent-red) !important;
+  color: #fff !important;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+/* Quick Animations */
+.transition-slow {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
